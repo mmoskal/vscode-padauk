@@ -47,7 +47,7 @@
 			"patterns": [
 				{
 					"name": "meta.preprocessor.padauk",
-					"match": "(?i)^\\s*[\\.#](include|define|undef|chip|printf|error|echo|code_option|user_roll|repeat|for|forc|endm)(\\b|\\s).*"
+					"match": "(?i)^\\s*[\\.#](include|define|undef|chip|printf|error|echo|code_option|user_roll|repeat|for|forc|endm|r[oa]madr)(\\b|\\s).*"
 				},
 				{
 					"name": "meta.preprocessor.setting.padauk",
