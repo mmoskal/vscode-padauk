@@ -3,27 +3,107 @@
 	"name": "Padauk ASM",
 	"patterns": [
 		{
+			"include": "#preproc"
+		},
+		{
+			"include": "#comments"
+		},
+		{
 			"include": "#keywords"
 		},
 		{
-			"include": "#strings"
+			"include": "#literals"
 		}
 	],
 	"repository": {
-		"keywords": {
-			"patterns": [{
-				"name": "keyword.control.padauk",
-				"match": "\\b(if|while|for|return)\\b"
-			}]
-		},
-		"strings": {
-			"name": "string.quoted.double.padauk",
-			"begin": "\"",
-			"end": "\"",
+		"comments": {
 			"patterns": [
 				{
-					"name": "constant.character.escape.padauk",
-					"match": "\\\\."
+					"name": "comment.line.double-slash.padauk",
+					"match": "//.*$"
+				},
+				{
+					"name": "invalid.deprecated.padauk",
+					"match": ";.*$"
+				},
+				{
+					"name": "comment.block.padauk",
+					"begin": "\\/\\*",
+					"beginCaptures": {
+						"0": {
+							"name": "comment.block.begin.padauk"
+						}
+					},
+					"endCaptures": {
+						"0": {
+							"name": "comment.block.end.padauk"
+						}
+					},
+					"end": "\\*\\/"
+				}
+			]
+		},
+		"preproc": {
+			"patterns": [
+				{
+					"name": "meta.preprocessor.padauk",
+					"match": "(?i)^\\s*[\\.#](include|define|undef|chip|printf|error|echo|code_option|user_roll|repeat|for|forc|endm)(\\b|\\s).*"
+				},
+				{
+					"name": "meta.preprocessor.setting.padauk",
+					"match": "^\\s*\\$.*"
+				},
+				{
+					"name": "meta.preprocessor.cond.padauk",
+					"match": "(?i)^\\s*[\\.#](IF|IFZ|IFB|IFNB|IFIDN|IFIDNI|IFDIF|IFDIFI|IFDEF|IFNDEF|ELSEIF|ELSEIFZ|ELSEIFB|ELSEIFNB|ELSEIFIDN|ELSEIFIDNI|ELSEIFDIF|ELSEIFDIFI|ELSEIFDEF|ELSEIFNDEF|ELSE|ENDIF)(\\b|\\s).*"
+				}
+			]
+		},
+		"literals": {
+			"patterns": [
+				{
+					"match": "(-|\\b)(0x)[0-9a-fA-F_]+\\b",
+					"name": "constant.numeric.hex.padauk"
+				},
+				{
+					"match": "(-|\\b)[0-9]+\\b",
+					"name": "constant.numeric.dec.padauk"
+				},
+				{
+					"match": "(-|\\b)0b[01_]+\\b",
+					"name": "constant.numeric.bin.padauk"
+				}
+			]
+		},
+		"keywords": {
+			"patterns": [
+				{
+					"name": "keyword.control.padauk",
+					"match": "\\b(if)\\b"
+				},
+				{
+					"name": "keyword.control.def.padauk",
+					"match": "(?i)\\b(equ|macro|expand|endm|word|byte)\\b"
+				},
+				{
+					"name": "support.function.mnemonic.padauk",
+					"match": "(?i)\\b(add|addc|and|call|ceqsn|clear|dec|disgint|dzsn|engint|goto|idxm|inc|izsn|ldt16|mov|neg|not|or|pcadd|popaf|pushaf|reset|ret|reti|set[01]|s[lr]|s[lr]c|stop(exe|sys)|stt16|sub|subc|swap|t[01]sn|wdreset|xch|xor|nop)\\b"
+				},
+				{
+					"name": "support.function.stdmacro.padauk",
+					"match": "(?i)\\b(ifset|ifclear|ifneq)\\b"
+				},
+				{
+					"name": "support.function.stdmacro.dot.padauk",
+					"match": "^\\s*\\.\\w+\\b"
+				},
+				{
+					"name": "keyword.control.label.padauk",
+					"match": "^\\s*[\\w@]+:"
+				},
+				{
+					"name": "entity.name.padauk",
+					"match": "\b[a-zA-Z_]\\w+\\b"
 				}
 			]
 		}
