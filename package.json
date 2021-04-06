@@ -1,0 +1,25 @@
+{
+    "name": "padauk",
+    "displayName": "padauk",
+    "description": "Support for Padauk assembly",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.55.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "padauk",
+            "aliases": ["Padauk ASM", "padauk"],
+            "extensions": [".asm"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "padauk",
+            "scopeName": "source.padauk",
+            "path": "./syntaxes/padauk.tmLanguage.json"
+        }]
+    }
+}
